@@ -22,24 +22,25 @@ public class Servidor{
         }
     }
 
-    public void levantarServer(){
-        try{
+    public void levantarServer() {
+        try {
             socketCliente = socketServidor.accept(); //devuelve el socket que va a usar luego el cliente
+            System.out.println("Cliente conectado con ip: " + socketCliente.getInetAddress().toString());
             out = new PrintWriter(socketCliente.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
         } catch (IOException e) {
             System.out.println("Error al recibir peticion" + e.getMessage());
         }
-        while(!socketServidor.isClosed()){
-            try{
-                String mensaje = in.readLine(); //el mensaje que acabamos de recibir
+        String mensaje = null;
+        do {
+            try {
+                mensaje = in.readLine();
+                System.out.println("AAAAA");
                 System.out.println(mensaje);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(e.getMessage());
             }
-
-
-        }
+        } while (mensaje != null);
 
     }
 
