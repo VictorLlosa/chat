@@ -15,8 +15,7 @@ public class Servidor{
     public Servidor(int port){
         try{
             //InetAddress.getByAddress devuelve un objeto tipo InetAddress
-
-            socketServidor = new ServerSocket(port,5, InetAddress.getByAddress(ipServidor));
+            socketServidor = new ServerSocket(port);
         }catch(IOException e){
             System.out.println("Error al crear el socket servidor" + e.getMessage());
         }
@@ -24,23 +23,15 @@ public class Servidor{
 
     public void levantarServer() {
         try {
-            socketCliente = socketServidor.accept(); //devuelve el socket que va a usar luego el cliente
+            socketCliente = socketServidor.accept();
             System.out.println("Cliente conectado con ip: " + socketCliente.getInetAddress().toString());
             out = new PrintWriter(socketCliente.getOutputStream(), true);
             in = new BufferedReader(new InputStreamReader(socketCliente.getInputStream()));
+            System.out.println(in.readLine());
         } catch (IOException e) {
             System.out.println("Error al recibir peticion" + e.getMessage());
         }
-        String mensaje = null;
-        do {
-            try {
-                mensaje = in.readLine();
-                System.out.println("AAAAA");
-                System.out.println(mensaje);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        } while (mensaje != null);
+
 
     }
 
