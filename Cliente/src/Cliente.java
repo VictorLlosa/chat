@@ -34,7 +34,7 @@ public class Cliente {
         while(true){
             System.out.println("Escribe un mensaje:\n");
             mensaje = scanner.nextLine();
-            out.write(mensaje);
+            out.println(mensaje);
         }
 
     }
