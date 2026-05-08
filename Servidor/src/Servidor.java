@@ -31,8 +31,6 @@ public class Servidor{
         } catch (IOException e) {
             System.out.println("Error al recibir peticion" + e.getMessage());
         }
-
-
     }
 
     public void pararDeEscuchar (){
